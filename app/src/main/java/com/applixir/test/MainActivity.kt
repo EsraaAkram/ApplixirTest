@@ -9,13 +9,15 @@ import com.applixir.test.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    //INITIALIZE THE AD LAUNCHER:
     private var adsLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            //CHECK TO REWARD USER (OPTIONAL)
             val isRewarded = checkRewardedAd(result)
 
         }
 
-    private  var binding: ActivityMainBinding?=null
+    private var binding: ActivityMainBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -23,6 +25,10 @@ class MainActivity : AppCompatActivity() {
 
 
         binding?.rewardBtn?.setOnClickListener {
+
+            //START AD :
+            // (IN THIS CASE ON REWARD BUTTON CLICKED,
+            //BUT YOU CAN USE THE SAME APPROACH WHENEVER YOU WANT):
             adsLauncher.launch(
                 startApplixir(
                     this@MainActivity,
